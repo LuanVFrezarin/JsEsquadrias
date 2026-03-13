@@ -1380,14 +1380,315 @@ ul { list-style: none; }
 .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+    filter: blur(10px);
 }
 
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
 }
 
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===== ABSURD EFFECTS & ANIMATIONS ===== */
+
+/* Dark Mode Variables */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg: #fff;
+    --neon-blue: #00f3ff;
+    --neon-gold: #ffd700;
+}
+
+body.dark-mode {
+    --bg-color: #050505;
+    --text-color: #e0e0e0;
+    --card-bg: #111;
+    --azul-escuro: #0a1025;
+    --azul-medio: #152248;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .navbar {
+    background: rgba(10, 16, 37, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .servico-card, 
+body.dark-mode .diferencial-card {
+    background: #1a1a2e;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--dourado), var(--azul-claro));
+    z-index: 10000;
+}
+
+/* Garantir que nenhum contorno de cursor personalizado apareça */
+.cursor-outline {
+    display: none !important;
+}
+
+@keyframes glitch-anim {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+}
+
+/* 3D Tilt Setup */
+.tilt-card {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.tilt-inner {
+    transform: translateZ(20px);
+}
+
+/* Floating Particles Container */
+#particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Neon Glow Button */
+.btn-neon {
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.btn-neon::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.btn-neon:hover::before {
+    left: 100%;
+}
+
+.btn-neon:hover {
+    box-shadow: 0 0 10px var(--dourado), 0 0 40px var(--dourado);
+    transform: scale(1.05); 
+}
+
+/* Stagger Animation Base */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.stagger-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animated Gradient Text */
+.gradient-text {
+    background: linear-gradient(to right, var(--dourado), #fff, var(--dourado));
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientFlow 5s linear infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.float-anim {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Dark Mode Toggle Position Fixed */
+.dark-mode-toggle {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    background: rgba(30, 58, 122, 0.8);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+/* ==================================== */
+/* VIDEO CHARACTER ANIMATION ("O Milagre") */
+/* ==================================== */
+
+.cta-with-video-char {
+    position: relative;
+    display: inline-block;
+}
+
+/* Container do Vídeo: Posicionado ao lado/em cima do botão */
+.video-char-container {
+    position: absolute;
+    /* Ajuste fino para "bater" no botão */
+    bottom: -15px;      /* Começa alinhado com a base ou um pouco abaixo */
+    right: -100px;      /* Move para a direita do botão */
+    width: 140px;       /* Tamanho do vídeo */
+    height: 140px;
+    z-index: 10;        /* Fica na frente do botão se sobrepor */
+    pointer-events: none; /* Permite clicar no botão se o vídeo passar por cima */
+    overflow: visible;
+    
+    /* Tentar remover fundo preto com mix-blend-mode (SCREEN) */
+    mix-blend-mode: screen; 
+    filter: brightness(1.2) contrast(1.1); /* Realçar o personagem */
+}
+
+.video-char {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajustar sem distorcer */
+    display: block;
+}
+
+/* Animação no Botão para simular impacto */
+.video-target {
+    position: relative;
+    z-index: 60; /* Garantir que o botão esteja sempre acima do personagem */
+    /* Removida animação contínua; animação acontece via JS no momento exato */
+    animation: none !important;
+    transition: transform 0.12s ease-out;
+}
+
+@keyframes impact-shake {
+    0%, 45% { transform: scale(1) rotate(0deg); }
+    /* Momento da "batida" */
+    48% { transform: scale(0.92) rotate(-3deg); } 
+    52% { transform: scale(1.05) rotate(3deg); }
+    55% { transform: scale(1.0); box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); } /* Brilho dourado no impacto */
+    60% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1); }
+}
+
+/* Ajustes Responsivos */
+@media (max-width: 768px) {
+    .video-char-container {
+        width: 120px;
+        height: 120px;
+        right: -20px;
+        bottom: -40px;
+    }
+}
+
+/* Chrome Key Canvas Style */
+#videoCanvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    /* Ajustes finos de brilho ja que removemos o mix-blend */
+    filter: brightness(1.1) contrast(1.05);
+    /* Não capturar cliques e ficar abaixo do botão */
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.video-char-container {
+    /* Fixar no canto direito inferior e aumentar tamanho para destaque */
+    position: fixed;
+    right: -40px; /* mais para a direita (parte para fora da tela) */
+    bottom: 18px; /* distância da borda inferior */
+    width: 320px;  /* maior para melhor definição */
+    height: 320px;
+    z-index: 20;   /* abaixo do botão */
+    pointer-events: none;
+    overflow: visible;
+}
+
+/* Forçar posição absoluta fixa com maior especificidade */
+#videoCharContainer {
+    position: fixed !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translate(70%, -50%) !important;
+    width: 320px !important;
+    height: 320px !important;
+    z-index: 20 !important;
+}
+
+/* Forçar ausência de transform/centering herdada */
+#videoCharContainer, #videoCharContainer * {
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 0 !important;
+}
+
+/* Override para sync de audio/video */
+.video-target { animation: none !important; transition: transform 0.1s; }
+.video-target.hit-effect { animation: impact-hit 0.5s ease-out forwards !important; }
+@keyframes impact-hit { 0% { transform: scale(1); } 30% { transform: scale(0.9) rotate(-3deg); } 50% { transform: scale(1.1) rotate(3deg); box-shadow: 0 0 30px rgba(255, 215, 0, 0.9); } 100% { transform: scale(1) rotate(0deg); } }
+
+/* === PROMO CARD === */
+.promo-card { position: absolute; right: 240px; bottom: 10px; width: 220px; background: linear-gradient(135deg, #1A2E5A 0%, #172442 100%); border: 2px solid var(--dourado); border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.4); padding: 12px; transform: scale(0) translateX(20px); opacity: 0; transform-origin: bottom right; transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 999; pointer-events: none; }
+.promo-card.visible { transform: scale(1) translateX(0); opacity: 1; pointer-events: auto; }
+.promo-card.shake { animation: card-shake 0.5s ease-in-out; }
+.promo-header { color: var(--dourado); font-size: 0.65rem; font-weight: 800; letter-spacing: 0.5px; text-align: center; margin-bottom: 4px; border-bottom: 1px solid rgba(212,168,67,0.3); padding-bottom: 4px; }
+.promo-body { text-align: center; margin: 6px 0; }
+.promo-body .discount { display: block; color: #fff; font-size: 1.6rem; font-weight: 900; line-height: 1; text-shadow: 0 2px 10px rgba(212,168,67,0.4); }
+.promo-body .detail { display: block; color: rgba(255,255,255,0.7); font-size: 0.6rem; margin-top: 2px; }
+.promo-footer { background: rgba(255,255,255,0.05); color: var(--dourado); font-size: 0.6rem; font-weight: 600; text-align: center; padding: 4px; border-radius: 4px; margin-top: 6px; }
+.promo-arrow { position: absolute; bottom: 15px; right: -8px; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 8px solid var(--dourado); }
+@keyframes card-shake { 0%, 100% { transform: scale(1) translateX(0) rotate(0); } 20% { transform: scale(1.05) translateX(-5px) rotate(-3deg); } 40% { transform: scale(1.05) translateX(5px) rotate(3deg); } 60% { transform: scale(1.05) translateX(-3px) rotate(-2deg); } 80% { transform: scale(1) translateX(2px) rotate(1deg); } }

@@ -1,13 +1,13 @@
-# JS Esquadrias de Aluminio
+# JS Esquadrias de Alumínio
 
-Site profissional para JS Esquadrias de Aluminio, especializada em fabricação, instalação e manutenção de esquadrias de aluminio e vidro em São Paulo.
+Site profissional para JS Esquadrias de Alumínio, especializada em fabricação, instalação e manutenção de esquadrias de alumínio e vidro em São Paulo.
 
 ## 🌐 Características do Site
 
 - **Design Responsivo**: Compatível com Desktop, Tablets e Celulares
 - **Navbar Fixa**: Navegação fixa com scroll effect
 - **Hero Section**: Slideshow automático de imagens
-- **Portfolio Dinâmico**: Carrossel de projetos com thumbnails
+- **Portfólio Dinâmico**: Carrossel de projetos com thumbnails
 - **Formulário de Contato**: Integração direta com WhatsApp
 - **Animações Suaves**: Scroll reveal e transições elegantes
 - **SEO Otimizado**: Meta tags e estrutura semântica
@@ -28,6 +28,7 @@ JSEsquadrias/
 ## 🚀 Como Usar
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/LuanVFrezarin/JsEsquadrias.git
 ```
@@ -59,8 +60,8 @@ git clone https://github.com/LuanVFrezarin/JsEsquadrias.git
 - **Telefone**: (11) 2269-2886
 - **WhatsApp**: (11) 96117-9315
 - **Email**: js.esquadria@hotmail.com
-- **Endereço**: Rua General Porfirio da Paz, 1056 - Vila Bancário, São Paulo - SP
+- **Endereço**: Rua General Porfírio da Paz, 1056 - Vila Bancário, São Paulo - SP
 
 ## ©️ Direitos Autorais
 
-© 2026 JS Esquadrias de Aluminio. Todos os direitos reservados.
+© 2026 JS Esquadrias de Alumínio. Todos os direitos reservados.
